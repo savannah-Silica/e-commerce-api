@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Product Detail - E-Commerce App{% endblock %}
+
+{% block header %}Product Detail{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2>{{ product.name }}</h2>
+        <div class="row">
+            <div class="col-md-6">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }} Image" class="img-fluid">
+                {% else %}
+                    <p class="text-muted">Image unavailable</p>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <p class="lead">Price: ${{ product.price }}</p>
+                <p>{{ product.description }}</p>
+                <p>Quantity in Stock: {{ product.quantity_in_stock }}</p>
+                <div class="btn-group mt-3" role="group">
+                    <a href="{% url 'product_update' pk=product.pk %}" class="btn btn-primary">Edit</a>
+                    <span style="margin-right: 5px;"></span>
+                    <a href="{% url 'product_delete' pk=product.pk %}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

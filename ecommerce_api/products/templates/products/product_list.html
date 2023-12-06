@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Product List - E-Commerce App{% endblock %}
+
+{% block header %}Product List{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2>All Products</h2>
+        <ul class="list-group">
+            {% for product in products %}
+                <li class="list-group-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="{{ product.id }}/">{{ product.name }}</a>
+                        <span class="badge badge-primary badge-pill">${{ product.price }}</span>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
