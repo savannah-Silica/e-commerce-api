@@ -8,7 +8,7 @@
     <h2>All Products</h2>
     <ul>
         {% for product in products %}
-            <li><a href={{ product.id }}>{{ product.name }} - ${{ product.price }}</a></li>
+            <li><a href="{{ product.id }}/">{{ product.name }} - ${{ product.price }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}
