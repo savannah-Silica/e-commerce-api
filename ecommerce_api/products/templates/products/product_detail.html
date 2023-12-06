@@ -10,7 +10,7 @@
     <p>Description: {{ product.description }}</p>
     <p>Quantity in Stock: {{ product.quantity_in_stock }}</p>
     {% if product.image %}
-        <img src="{{ product.image.url }}" alt="{{ product.name }} Image">
+        <img src="{{ product.image.url }}" alt="{{ product.name }} Image"/>
     {% else %}
         <p>Image unavailable</p>
     {% endif %}
