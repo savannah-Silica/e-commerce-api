@@ -5,12 +5,32 @@
 {% block header %}Product Form{% endblock %}
 
 {% block content %}
-    <h2>{% if form.instance.pk %}Edit{% else %}Add{% endif %} Product</h2>
-    <form method="post" enctype="multipart/form-data" action="{% if form.instance.pk %}{% url 'product_update' pk=form.instance.pk %}{% else %}{% url 'product_create' %}{% endif %}">
-        {% csrf_token %}
-        
-        {{ form.as_p }}
-        
-        <button type="submit">Save Product</button>
-    </form>
+    <div class="container mt-4">
+        <h2>{% if form.instance.pk %}Edit{% else %}Add{% endif %} Product</h2>
+        <form method="post" enctype="multipart/form-data" action="{% if form.instance.pk %}{% url 'product_update' pk=form.instance.pk %}{% else %}{% url 'product_create' %}{% endif %}">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                {{ form.name }}
+            </div>
+            
+            <div class="form-group">
+                {{ form.description }}
+            </div>
+            
+            <div class="form-group">
+                {{ form.price }}
+            </div>
+            
+            <div class="form-group">
+                {{ form.quantity_in_stock }}
+            </div>
+            
+            <div class="form-group">
+                {{ form.image }}
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Save Product</button>
+        </form>
+    </div>
 {% endblock %}
