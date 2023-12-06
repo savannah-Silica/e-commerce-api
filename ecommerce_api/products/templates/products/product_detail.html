@@ -9,5 +9,7 @@
     <p>Price: ${{ product.price }}</p>
     <p>Description: {{ product.description }}</p>
     <p>Quantity in Stock: {{ product.quantity_in_stock }}</p>
-    <img src={{ product.image }} alt={{ product.name }}>
+    {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }} Image">
+    {% endif %}
 {% endblock %}
