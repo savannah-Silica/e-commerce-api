@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Product Detail - E-Commerce App{% endblock %}
+
+{% block header %}Product Detail{% endblock %}
+
+{% block content %}
+    <h2>{{ product.name }}</h2>
+    <p>Price: ${{ product.price }}</p>
+    <p>Description: {{ product.description }}</p>
+    <p>Quantity in Stock: {{ product.quantity_in_stock }}</p>
+    <img src={{ product.image }} alt={{ product.name }}>
+{% endblock %}
