@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% comment %} caution - this extends base.html from 'e-commerce-api\ecommerce_api\products\templates\base.html' {% endcomment %}
+
+{% block title %}Order List{% endblock %}
+
+{% block header %}Order List{% endblock %}
+
+{% block content %}
+
+<style>
+    th, td {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+</style>
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Status</th>
+            <th>Customer</th>
+            <th>Created</th>
+            <th>Last updated</th>
+            <th>STotal Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.status }}</td>
+                <td>{{ order.customer}}</td>
+                <td>{{ order.created_at }}</td>
+                <td>{{ order.updated_at}}</td>
+                <td>{{ order.total_price}}</td>
+                <td>
+                    <a href="{% url 'order_update' order.pk %}">Edit</a>
+                    <a href="{% url 'order_delete' order.pk %}">Delete</a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="3">No orders found</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'order_create' %}">Create new order</a>
+{% endblock %}
