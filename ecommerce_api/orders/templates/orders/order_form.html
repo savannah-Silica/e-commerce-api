@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% comment %} caution - this extends base.html from 'e-commerce-api\ecommerce_api\products\templates\base.html' {% endcomment %}
+
+{% block title %}Order edit form{% endblock %}
+
+{% block header %}Order Edit form{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+{% endblock %}

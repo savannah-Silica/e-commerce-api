@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% comment %} caution - this extends base.html from 'e-commerce-api\ecommerce_api\products\templates\base.html' {% endcomment %}
+
+{% block title %}Order deletion form{% endblock %}
+
+{% block header %}Order deletion form{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete "{{ order }}"?</p>
+    <button type="submit">Yes</button>
+</form>
+{% endblock %}

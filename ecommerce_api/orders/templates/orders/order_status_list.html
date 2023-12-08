@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% comment %} caution - this extends base.html from 'e-commerce-api\ecommerce_api\products\templates\base.html' {% endcomment %}
+
+{% block title %}Order status Configuration form{% endblock %}
+
+{% block header %}Order status Configuration{% endblock %}
+
+{% block content %}
+<style>
+    th, td {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+</style>
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Abbreviation</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for status in statuses %}
+            <tr>
+                <td>{{ status.abbreviation }}</td>
+                <td>{{ status.name }}</td>
+                <td>
+                    <a href="{% url 'order_status_update' status.pk %}">Edit</a>
+                    <a href="{% url 'order_status_delete' status.pk %}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'order_status_create' %}">Create new</a>
+{% endblock %}
