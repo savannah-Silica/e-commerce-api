@@ -74,6 +74,38 @@ We welcome contributions from the community to make this project better. Here's 
 6. **Review and feedback**: Your PR will be reviewed by maintainers. Address any feedback and make necessary changes.
 
 7. **Merge**: Once your PR is approved, it will be merged into the `main` branch.
+   
+## Development Process
+
+To maintain a clean and modular codebase, we follow a structured development process. Each feature should be implemented in its own app, ensuring a clear separation of concerns. Additionally, the API side of each feature is developed in a dedicated folder within the `api` app. Let's walk through the process using the example of the shopping cart feature:
+
+1. **Create a New Feature Branch:**
+   Before starting, create a new branch for the feature.
+     ```
+     git checkout -b feature-shopping-cart
+     ```
+2. **Implement Feature in Feature App:**
+   Create a new app for the shopping cart feature.
+     ```
+     python manage.py startapp shopping_cart
+     ```
+   Implement the feature within the `shopping_cart` app.
+   Write comprehensive tests for the feature to ensure robust functionality.
+3. **Create a PR for the Feature Branch:**
+   Once the feature is complete and tested, create a pull request for the feature branch.
+4. **Create API Folder in `api` App:**
+   Inside the `api` app, create a dedicated folder for the shopping cart API.
+     ```
+     cd api
+     mkdir shopping_cart     ```
+5. **Implement Feature Code in the API Folder:**
+   Implement the relevant code for the `shopping_cart` app in the corresponding `api/shopping_cart` folder.
+6. **Test API Endpoints:**
+   Ensure that the API endpoints related to the shopping cart feature are working correctly.
+     ```
+     python manage.py test api.shopping_cart
+     ```
+This process ensures a clean separation between the feature implementation and its corresponding API, promoting modularity and maintainability. Remember to write comprehensive tests for both the feature and its API to ensure the reliability of your code. Repeat these steps for each new feature, creating a dedicated app for the feature and organizing its API code within the `api` app.
 
 ## License
 
