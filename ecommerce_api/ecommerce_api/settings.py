@@ -39,9 +39,19 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "products",
     "accounts.apps.AccountsConfig", # Users Authentication app
-    "orders"
-]
+    "orders",
+    "rest_framework",
+    "rest_framework_simplejwt",
 
+]
+REST_FRAMEWORK={
+    'DEFAULT_AUTHENTICATION_CLASSES':(
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    
+    'DEFAULT_FILTER_BACKENDS':
+    ['django_filters.rest_framework.DjangoFilterBackend'],
+}
 AUTH_USER_MODEL = "accounts.CustomUser" # model config for custom user
 
 MIDDLEWARE = [
