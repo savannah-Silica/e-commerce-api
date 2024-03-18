@@ -1,27 +1,22 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import  AbstractBaseUser, PermissionsMixin
 from PIL import Image
+from .managers import CustomUserManager
+from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
+class CustomUser(AbstractBaseUser,PermissionsMixin):
+    email=models.EmailField(_("email address"), unique=True)
+    is_staff=models.BooleanField(default=False)
+    is_active=models.BooleanField(default=True)
+    date_joined=models.DateTimeField(default=timezone.now)
 
+    USERNAME_FIELD="email"
+    REQUIRED_FIELDS=[]
 
-class CustomUser(AbstractUser):
-    name=models.CharField(max_length=100)
-    email=models.EmailField(unique=True)
-    address=models.CharField(max_length=100)
-    phone_number=models.CharField(max_length=10, null=True, blank=True)
-    
-    class Meta:
-        verbose_name='user'
-        verbose_name_plural='users'
-        ordering=['name']
-        indexes=[
-            models.Index(fields=['email'], name='email_idx',),
-            models.Index(fields=['name'], name='name_idx',),
-        ]
+    objects=CustomUserManager()
 
     def __str__(self):
-        return self.name
-
-
+        return self.email
 class Profile(models.Model):
     user=models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     photo=models.ImageField(default='avatar.jpg', upload_to='profile_pics/%Y')
@@ -33,7 +28,7 @@ class Profile(models.Model):
         ordering=['user']
 
     def __str__(self):
-        return f'Profile of {self.user.name}'
+        return f'Profile of {self.user.email}'
     
     def save(self,**kwargs):
         super().save(**kwargs)
