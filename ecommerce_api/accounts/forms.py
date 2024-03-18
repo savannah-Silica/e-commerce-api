@@ -3,16 +3,17 @@ from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from .models import Profile,CustomUser
 
 class CustomUserCreationForm(UserCreationForm):
-    class Meta(UserCreationForm):
+
+    class Meta:
         model = CustomUser
-        fields = UserCreationForm.Meta.fields + ('name','email','address','phone_number',)
+        fields = ("email",)
 
 
 class CustomUserChangeForm(UserChangeForm):
+
     class Meta:
         model = CustomUser
-        fields = UserChangeForm.Meta.fields
-
+        fields = ("email",)
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
@@ -22,7 +23,7 @@ class UserProfileForm(forms.ModelForm):
 class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ('name','email','address','phone_number','password1','password2')
+        fields = ('email','password1','password2')
 
         def clean_password2(self):
             cd=self.cleaned_data
