@@ -31,7 +31,7 @@ def sign_up(request):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             user=form.save(commit=False)
-            user.name=user.name.lower()
+            user.email=user.email.lower()
             user.save()
             return render(request, 'accounts/signup_success.html', {    
                 'user': user
